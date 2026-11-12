@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  name          String
+  email         String        @unique
+  passwordHash  String
+  role          Role          @default(USER)
+  createdAt     DateTime      @default(now())
+  savedSearches SavedSearch[]
+  favorites     Favorite[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Source {
+  id      Int        @id @default(autoincrement())
+  name    String     @unique
+  type    SourceType
+  country String
+  offers  JobOffer[]
+}
+
+enum SourceType {
+  SCRAPING
+  API
+}
+
+model JobOffer {
+  id        Int        @id @default(autoincrement())
+  title     String
+  company   String?
+  country   String
+  city      String?
+  sector    String?
+  skills    String[]
+  salaryMin Int?
+  salaryMax Int?
+  postedAt  DateTime?
+  sourceId  Int
+  source    Source     @relation(fields: [sourceId], references: [id])
+  favorites Favorite[]
+  externalId String
+  url String?
+  currency String?
+  salaryPeriod SalaryPeriod?
+  @@unique([sourceId, externalId])
+  @@index([country, city])
+  @@index([sector])
+}
+
+model Favorite {
+  userId     Int
+  jobOfferId Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobOffer   JobOffer @relation(fields: [jobOfferId], references: [id], onDelete: Cascade)
+
+  @@id([userId, jobOfferId])
+}
+
+model SavedSearch {
+  id        Int      @id @default(autoincrement())
+  name      String
+  filters   Json
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum SalaryPeriod {
+  MONTH
+  YEAR
+}
+
+model ExchangeRate {
+  currency  String   @id
+  perTnd    Float
+  updatedAt DateTime @updatedAt
+}

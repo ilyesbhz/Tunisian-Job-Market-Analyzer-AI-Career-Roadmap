@@ -1,0 +1,140 @@
+[
+ {
+  "sector": "Customer Service",
+  "tn": 69.7,
+  "fr": 24.5,
+  "gb": 35.5
+ },
+ {
+  "sector": "Engineering",
+  "tn": 58,
+  "fr": 56,
+  "gb": 71.1
+ },
+ {
+  "sector": "IT, Data & Telecom",
+  "tn": 57.3,
+  "fr": 77.6,
+  "gb": 82.8
+ },
+ {
+  "sector": "Industry & Manufacturing",
+  "tn": 53,
+  "fr": 35.7,
+  "gb": 41.5
+ },
+ {
+  "sector": "Construction & Property",
+  "tn": 51.9,
+  "fr": 49.7,
+  "gb": 66.9
+ },
+ {
+  "sector": "Education & Training",
+  "tn": 50.9,
+  "fr": 55.5,
+  "gb": 48.5
+ },
+ {
+  "sector": "Hospitality, Tourism & Personal Services",
+  "tn": 50,
+  "fr": 38.3,
+  "gb": 30.5
+ },
+ {
+  "sector": "Finance & Accounting",
+  "tn": 48.5,
+  "fr": 62.5,
+  "gb": 67.3
+ },
+ {
+  "sector": "Agriculture & Agri-food",
+  "tn": 47.7,
+  "fr": null,
+  "gb": null
+ },
+ {
+  "sector": "Logistics, Transport & Supply Chain",
+  "tn": 46.2,
+  "fr": 32.8,
+  "gb": 37.8
+ },
+ {
+  "sector": "Marketing & Communication",
+  "tn": 44.9,
+  "fr": 54.9,
+  "gb": 61.4
+ },
+ {
+  "sector": "Science, Research & Quality",
+  "tn": 43.7,
+  "fr": 47,
+  "gb": 60.8
+ },
+ {
+  "sector": "Sales & Retail",
+  "tn": 43.2,
+  "fr": 52.9,
+  "gb": 48
+ },
+ {
+  "sector": "Consulting & Strategy",
+  "tn": 41.4,
+  "fr": 65.5,
+  "gb": 64.5
+ },
+ {
+  "sector": "Creative & Design",
+  "tn": 41.3,
+  "fr": 41.8,
+  "gb": 60.6
+ },
+ {
+  "sector": "Administration & Management",
+  "tn": 41.1,
+  "fr": 49.4,
+  "gb": 36.7
+ },
+ {
+  "sector": "Healthcare & Pharma",
+  "tn": 40.1,
+  "fr": 46.7,
+  "gb": 63.2
+ },
+ {
+  "sector": "Maintenance & Technical Trades",
+  "tn": null,
+  "fr": 41.3,
+  "gb": 49.6
+ },
+ {
+  "sector": "Human Resources",
+  "tn": null,
+  "fr": 50.2,
+  "gb": 58
+ },
+ {
+  "sector": "Legal",
+  "tn": null,
+  "fr": 67.7,
+  "gb": 74.3
+ },
+ {
+  "sector": "Energy & Environment",
+  "tn": null,
+  "fr": 67.3,
+  "gb": 65.3
+ },
+ {
+  "sector": "Social & Public Services",
+  "tn": null,
+  "fr": 57.5,
+  "gb": 43.8
+ },
+ {
+  "sector": "Other / General",
+  "tn": null,
+  "fr": 60,
+  "gb": 36.2
+ }
+]

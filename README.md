@@ -1,4 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tunisian Job Market Analyzer
+
+## Importing jobs from the ML pipeline
+
+The ML project and this app use separate PostgreSQL databases. Do not point the
+app's `DATABASE_URL` at the ML database: the ML schema is different from the
+Prisma schema used by this app.
+
+The ML exporter already produces the JSON format expected by this project:
+
+```powershell
+cd C:\Users\ilyesbhz\Downloads\export-jobs
+python -m src.export.export_jobs
+```
+
+Copy the resulting `exports\jobs.json` to
+`C:\Users\ilyesbhz\Desktop\9raya\web\job-analyzer\data\jobs.json`, or configure
+the ML project's `APP_DATA_DIR` to
+`C:\Users\ilyesbhz\Desktop\9raya\web\job-analyzer\data` so it writes there
+automatically.
+
+Then configure this project's `.env` with the app database connection:
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?schema=public"
+```
+
+Apply migrations and import the file:
+
+```powershell
+cd C:\Users\ilyesbhz\Desktop\9raya\web\job-analyzer
+npx prisma migrate deploy
+npm run import:jobs
+```
+
+To import a different JSON file without replacing `data\jobs.json`:
+
+```powershell
+npm run import:jobs -- C:\path\to\jobs.json
+```
+
+The importer validates each record, upserts sources and offers using
+`source + externalId`, and reports invalid records without inserting them.
 
 ## Getting Started
 
