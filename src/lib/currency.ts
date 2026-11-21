@@ -80,5 +80,5 @@ export function toMonthlyTnd(
   if (!currency || !period) return null;
   const rate = perTnd[currency];
   if (!rate) return null;
-  return Math.round(amount / (period === "YEAR" ? 12 : 1) * rate);
+  return Math.round(amount / (period === "YEAR" ? 12 : 1) / rate);
 }

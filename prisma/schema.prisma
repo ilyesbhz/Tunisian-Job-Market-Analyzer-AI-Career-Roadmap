@@ -22,6 +22,7 @@ model User {
   createdAt     DateTime      @default(now())
   savedSearches SavedSearch[]
   favorites     Favorite[]
+  roadmaps      Roadmap[]
 }
 
 enum Role {
@@ -53,6 +54,10 @@ model JobOffer {
   salaryMin Int?
   salaryMax Int?
   postedAt  DateTime?
+  validThrough DateTime? // application deadline, when the source gives one
+  level     JobLevel? // who the offer is for; null when nothing says so
+  isActive  Boolean   @default(true) // false once the offer is no longer in the latest import
+  lastImportedAt DateTime? // start time of the last import run that contained this offer
   sourceId  Int
   source    Source     @relation(fields: [sourceId], references: [id])
   favorites Favorite[]
@@ -60,9 +65,18 @@ model JobOffer {
   url String?
   currency String?
   salaryPeriod SalaryPeriod?
+  // Model estimate (tn-jobs salary-bracket model) for Tunisian offers that state no salary.
+  // Same units as salaryMin/salaryMax (yearly, in estimatedSalaryCurrency); never mixed into them.
+  estimatedSalaryBracket    String? // "<1000" | "1000-1500" | "1500-2000" | ">=2000" (TND / month)
+  estimatedSalaryMin        Int?
+  estimatedSalaryMax        Int?    // null for the open-ended ">=2000" bracket
+  estimatedSalaryCurrency   String?
+  estimatedSalaryConfidence Float?  // 0-1, the model's probability for that bracket
   @@unique([sourceId, externalId])
   @@index([country, city])
   @@index([sector])
+  @@index([level])
+  @@index([isActive, country])
 }
 
 model Favorite {
@@ -93,4 +107,25 @@ model ExchangeRate {
   currency  String   @id
   perTnd    Float
   updatedAt DateTime @updatedAt
+}
+
+enum JobLevel {
+  INTERNSHIP
+  ENTRY
+  EXPERIENCED
+}
+
+// AI career roadmaps. input = the profile the user entered, market = the facts computed from the
+// job offers at generation time, plan = the roadmap written by the language model.
+model Roadmap {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetRole String
+  input      Json
+  market     Json
+  plan       Json
+  model      String
+  createdAt  DateTime @default(now())
+  @@index([userId, createdAt])
 }

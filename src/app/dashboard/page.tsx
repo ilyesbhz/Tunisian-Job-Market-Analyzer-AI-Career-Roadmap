@@ -1,29 +1,63 @@
 import Link from "next/link";
+
+import { BriefcaseBusiness, Building2, TrendingDown, TrendingUp, WalletCards, Wrench } from "lucide-react";
+
+import { BracketCompareChart, HBarChart } from "@/components/charts";
+import { SalaryConverter } from "@/components/salary-converter";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
+import { ESTIMATE_MIN_CONFIDENCE, LOCAL_COUNTRY } from "@/lib/config";
+import { getRates } from "@/lib/currency";
 import { getCurrentUser } from "@/lib/dal";
 import { getFilterOptions } from "@/lib/jobs";
-import { getStats, getAvgSalaryTnd, getSalaryByCountry } from "@/lib/stats";
-import { getRates } from "@/lib/currency";
-import { LOCAL_COUNTRY } from "@/lib/config";
-import { HBarChart } from "@/components/charts";
-import { SalaryConverter } from "@/components/salary-converter";
-import { logout } from "@/app/(auth)/actions";
+import { getPppFactors } from "@/lib/ppp";
+import { getAvgSalaryTnd, getSalaryBrackets, getSalaryByCountry, getStats } from "@/lib/stats";
 
-function Kpi({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function MetricCard({
+  label,
+  value,
+  hint,
+  icon,
+  badge,
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  icon: React.ReactNode;
+  badge?: React.ReactNode;
+}) {
   return (
-    <div className="rounded-lg border p-4">
-      <p className="text-sm opacity-70">{label}</p>
-      <p className="mt-1 text-2xl font-bold">{value}</p>
-      {hint && <p className="mt-1 text-xs opacity-60">{hint}</p>}
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          <div className="bg-muted text-muted-foreground flex size-7 items-center justify-center rounded-lg border">
+            {icon}
+          </div>
+        </CardTitle>
+        <CardDescription>{label}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="truncate text-2xl leading-none font-medium tracking-tight tabular-nums">{value}</div>
+          {badge}
+        </div>
+        {hint && <p className="text-muted-foreground text-sm">{hint}</p>}
+      </CardContent>
+    </Card>
   );
 }
 
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
+function ChartCard({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border p-4">
-      <h2 className="mb-3 font-semibold">{title}</h2>
-      {children}
-    </section>
+    <Card className="shadow-xs">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        {description && <CardDescription>{description}</CardDescription>}
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 }
 
@@ -39,88 +73,143 @@ export default async function DashboardPage({
 
   const raw = Array.isArray(sp.country) ? sp.country[0] : sp.country;
   const compareAll = raw === "all";
-  const country = compareAll
-    ? undefined
-    : raw && options.countries.includes(raw)
-      ? raw
-      : LOCAL_COUNTRY;
+  const country = compareAll ? undefined : raw && options.countries.includes(raw) ? raw : LOCAL_COUNTRY;
 
-  const [stats, localSalary, salaryByCountry] = await Promise.all([
+  const [stats, localSalary, salaryByCountry, ppp, brackets] = await Promise.all([
     getStats(country),
-    country && country !== LOCAL_COUNTRY ? getAvgSalaryTnd(LOCAL_COUNTRY) : Promise.resolve(null),
+    getAvgSalaryTnd(LOCAL_COUNTRY),
     compareAll ? getSalaryByCountry() : Promise.resolve([]),
+    getPppFactors(),
+    // estimates exist only for local (Tanitjobs) offers
+    country === LOCAL_COUNTRY ? getSalaryBrackets(LOCAL_COUNTRY) : Promise.resolve(null),
   ]);
+  const statedN = brackets?.reduce((s, b) => s + b.statedN, 0) ?? 0;
+  const estimatedN = brackets?.reduce((s, b) => s + b.estimatedN, 0) ?? 0;
 
   const diff =
-    stats.salary && localSalary
+    country && country !== LOCAL_COUNTRY && stats.salary && localSalary
       ? Math.round((stats.salary.avg / localSalary.avg - 1) * 100)
       : null;
-  const salaryHint = stats.salary
-    ? `${stats.salary.n} offers, converted to TND${diff !== null ? ` · ${diff >= 0 ? "+" : ""}${diff}% vs ${LOCAL_COUNTRY}` : ""}`
-    : "no salary data";
 
   return (
-    <main className="mx-auto mt-12 max-w-6xl p-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <div className="@container/main flex flex-col gap-4 md:gap-6">
+      <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-sm opacity-70">Signed in as {user.name} ({user.email})</p>
+          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground mt-1 text-sm">Welcome back, {user.name}.</p>
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/dashboard/jobs" className="text-sm underline">Browse job offers</Link>
-          <form action={logout}>
-            <button className="rounded bg-black px-4 py-2 text-sm text-white dark:bg-white dark:text-black">Log out</button>
-          </form>
-        </div>
+        <form className="flex items-center gap-2">
+          <NativeSelect name="country" defaultValue={compareAll ? "all" : country} aria-label="Country">
+            {options.countries.map((c) => (
+              <NativeSelectOption key={c} value={c}>
+                {c === LOCAL_COUNTRY ? `${c} (default)` : c}
+              </NativeSelectOption>
+            ))}
+            <NativeSelectOption value="all">All countries (comparison)</NativeSelectOption>
+          </NativeSelect>
+          <Button type="submit">Apply</Button>
+        </form>
       </div>
 
-      <form className="mt-6 flex items-center gap-3">
-        <select
-          name="country"
-          defaultValue={compareAll ? "all" : country}
-          className="rounded border p-2 text-sm"
-        >
-          {options.countries.map((c) => (
-            <option key={c} value={c}>{c === LOCAL_COUNTRY ? `${c} (default)` : c}</option>
-          ))}
-          <option value="all">All countries (comparison)</option>
-        </select>
-        <button className="rounded border px-4 py-2 text-sm">Apply</button>
-      </form>
-
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-        <Kpi label="Offers" value={stats.total.toLocaleString("en-US")} hint={country ?? "all countries"} />
-        <Kpi label="Top sector" value={stats.sectors[0]?.name ?? "-"} />
-        <Kpi label="Top skill" value={stats.skills[0]?.name ?? "-"} />
-        <Kpi
+      <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-4">
+        <MetricCard
+          label="Offers"
+          value={stats.total.toLocaleString("en-US")}
+          hint={country ?? "All countries"}
+          icon={<BriefcaseBusiness className="size-4" />}
+        />
+        <MetricCard
+          label="Top sector"
+          value={stats.sectors[0]?.name ?? "-"}
+          hint="Most represented sector"
+          icon={<Building2 className="size-4" />}
+        />
+        <MetricCard
+          label="Top skill"
+          value={stats.skills[0]?.name ?? "-"}
+          hint="Most requested skill"
+          icon={<Wrench className="size-4" />}
+        />
+        <MetricCard
           label="Average salary"
-          value={stats.salary ? `${stats.salary.avg.toLocaleString("en-US")} TND / month` : "-"}
-          hint={salaryHint}
+          value={stats.salary ? `${stats.salary.avg.toLocaleString("en-US")} TND` : "-"}
+          hint={stats.salary ? `Per month · ${stats.salary.n} offers, converted to TND` : "No salary data"}
+          icon={<WalletCards className="size-4" />}
+          badge={
+            diff !== null && (
+              <Badge variant={diff >= 0 ? "default" : "destructive"}>
+                {diff >= 0 ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />}
+                {diff >= 0 ? "+" : ""}
+                {diff}% vs {LOCAL_COUNTRY}
+              </Badge>
+            )
+          }
         />
       </div>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <Card title="Most requested skills"><HBarChart data={stats.skills} /></Card>
-        <Card title="Offers by sector"><HBarChart data={stats.sectors} /></Card>
-        <Card title="Offers by city"><HBarChart data={stats.cities} /></Card>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <ChartCard title="Most requested skills">
+          <HBarChart data={stats.skills} />
+        </ChartCard>
+        <ChartCard title="Offers by sector">
+          <HBarChart data={stats.sectors} />
+        </ChartCard>
+        <ChartCard
+          title="Who the offers are for"
+          description={`Internships, entry-level and experienced roles${stats.levelUnknown ? ` · ${stats.levelUnknown.toLocaleString("en-US")} offers not specified` : ""}`}
+        >
+          <HBarChart data={stats.levels} />
+        </ChartCard>
+        <ChartCard title="Offers by city">
+          <HBarChart data={stats.cities} />
+        </ChartCard>
+        {brackets && (
+          <div className="lg:col-span-2">
+            <ChartCard
+              title="Salary brackets: stated vs estimated"
+              description={
+                `Share of offers in each monthly bracket · ${statedN.toLocaleString("en-US")} offers state a salary, ` +
+                `${estimatedN.toLocaleString("en-US")} more have a model estimate (confidence ≥ ${ESTIMATE_MIN_CONFIDENCE * 100}%)`
+              }
+            >
+              <BracketCompareChart data={brackets} />
+              <p className="text-muted-foreground mt-3 text-xs">
+                Estimates come from a model trained on the offers that state a bracket. It picks the right bracket
+                about 62% of the time and is at most one bracket off about 93% of the time. They are never used in
+                the average salary above.
+              </p>
+            </ChartCard>
+          </div>
+        )}
         {compareAll && (
           <>
-            <Card title="Offers by country"><HBarChart data={stats.countries} /></Card>
-            <Card title="Average monthly salary by country (TND)"><HBarChart data={salaryByCountry} /></Card>
+            <ChartCard title="Offers by country">
+              <HBarChart data={stats.countries} />
+            </ChartCard>
+            <ChartCard title="Average monthly salary by country" description="In TND">
+              <HBarChart data={salaryByCountry} label="TND / month" />
+            </ChartCard>
           </>
         )}
       </div>
 
-      <section className="mt-6 rounded-lg border p-4">
-        <h2 className="mb-3 font-semibold">Salary converter</h2>
-        <SalaryConverter perTnd={rates.perTnd} />
-      </section>
+      <Card className="shadow-xs">
+        <CardHeader>
+          <CardTitle>Salary converter</CardTitle>
+          <CardDescription>Convert a salary into TND per month, or compare it with {LOCAL_COUNTRY}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <SalaryConverter perTnd={rates.perTnd} ppp={ppp} localAvg={localSalary?.avg ?? null} />
+        </CardContent>
+      </Card>
 
-      <p className="mt-8 text-xs opacity-60">
+      <p className="text-muted-foreground text-xs">
         Salaries are converted to TND per month using daily exchange rates
         {rates.updatedAt ? ` (updated ${rates.updatedAt.toISOString().slice(0, 10)})` : ""}.{" "}
-        <a href="https://www.exchangerate-api.com" className="underline">Rates By Exchange Rate API</a>
+        <Link href="https://www.exchangerate-api.com" className="underline">
+          Rates By Exchange Rate API
+        </Link>
       </p>
-    </main>
+    </div>
   );
 }

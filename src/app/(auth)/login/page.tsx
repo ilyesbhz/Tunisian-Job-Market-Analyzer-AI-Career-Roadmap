@@ -1,34 +1,78 @@
 "use client";
 
 import { useActionState } from "react";
+
 import Link from "next/link";
+
+import { Globe } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { APP_CONFIG } from "@/config/app-config";
+
 import { login } from "../actions";
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(login, undefined);
 
   return (
-    <main className="mx-auto mt-24 max-w-sm p-6">
-      <h1 className="mb-6 text-2xl font-bold">Log in</h1>
-      <form action={action} className="flex flex-col gap-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium">Email</label>
-          <input id="email" name="email" type="email" className="mt-1 w-full rounded border p-2" />
-          {state?.errors?.email && <p className="mt-1 text-sm text-red-600">{state.errors.email[0]}</p>}
+    <>
+      <div className="mx-auto flex w-full flex-col justify-center space-y-8 px-6 sm:w-[350px] sm:px-0">
+        <div className="space-y-2 text-center">
+          <h1 className="text-3xl font-medium">Login to your account</h1>
+          <p className="text-muted-foreground text-sm">Please enter your details to login.</p>
         </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium">Password</label>
-          <input id="password" name="password" type="password" className="mt-1 w-full rounded border p-2" />
-          {state?.errors?.password && <p className="mt-1 text-sm text-red-600">{state.errors.password[0]}</p>}
+        <form action={action} noValidate className="flex flex-col gap-4">
+          <FieldGroup className="gap-4">
+            <Field className="gap-1.5" data-invalid={!!state?.errors?.email}>
+              <FieldLabel htmlFor="email">Email Address</FieldLabel>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
+                aria-invalid={!!state?.errors?.email}
+              />
+              <FieldError>{state?.errors?.email?.[0]}</FieldError>
+            </Field>
+            <Field className="gap-1.5" data-invalid={!!state?.errors?.password}>
+              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                autoComplete="current-password"
+                aria-invalid={!!state?.errors?.password}
+              />
+              <FieldError>{state?.errors?.password?.[0]}</FieldError>
+            </Field>
+          </FieldGroup>
+          <FieldError>{state?.message}</FieldError>
+          <Button className="w-full" type="submit" disabled={pending}>
+            {pending ? "Logging in..." : "Login"}
+          </Button>
+        </form>
+      </div>
+
+      <div className="absolute top-5 flex w-full justify-end px-10">
+        <div className="text-muted-foreground text-sm">
+          Don&apos;t have an account?{" "}
+          <Link prefetch={false} className="text-foreground" href="/signup">
+            Register
+          </Link>
         </div>
-        {state?.message && <p className="text-sm text-red-600">{state.message}</p>}
-        <button disabled={pending} className="rounded bg-black p-2 text-white disabled:opacity-50 dark:bg-white dark:text-black">
-          {pending ? "Logging in..." : "Log in"}
-        </button>
-      </form>
-      <p className="mt-4 text-sm">
-        No account yet? <Link href="/signup" className="underline">Sign up</Link>
-      </p>
-    </main>
+      </div>
+
+      <div className="absolute bottom-5 flex w-full justify-between px-10">
+        <div className="text-sm">{APP_CONFIG.copyright}</div>
+        <div className="flex items-center gap-1 text-sm">
+          <Globe className="text-muted-foreground size-4" />
+          ENG
+        </div>
+      </div>
+    </>
   );
 }
