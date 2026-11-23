@@ -11,10 +11,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ESTIMATE_MIN_CONFIDENCE, LOCAL_COUNTRY } from "@/lib/config";
 import { getRates } from "@/lib/currency";
 import { getCurrentUser } from "@/lib/dal";
-import { getFilterOptions, getJobs, parseFilters } from "@/lib/jobs";
+import { getFilterOptions, getJobs, parseFilters, toSearchFilters } from "@/lib/jobs";
 import { JOB_LEVEL_KEYS, JOB_LEVELS, type JobLevelKey } from "@/lib/levels";
 import { getPppFactors, type PppFactors } from "@/lib/ppp";
+import { describeSearch, getFavoriteIds } from "@/lib/saved";
 import { getAvgSalaryTnd } from "@/lib/stats";
+
+import { SaveJobButton } from "../saved/_components/save-job-button";
+import { SaveSearchButton } from "../saved/_components/save-search-button";
 
 import { ConvertSalaryButton } from "./_components/convert-salary-button";
 
@@ -134,7 +138,7 @@ export default async function JobsPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  await getCurrentUser();
+  const user = await getCurrentUser();
   const filters = parseFilters(await searchParams);
   if (!filters.country) filters.country = LOCAL_COUNTRY;
   const [{ jobs, total, pages }, options, rates, ppp, localSalary] = await Promise.all([
@@ -145,6 +149,8 @@ export default async function JobsPage({
     getAvgSalaryTnd(LOCAL_COUNTRY),
   ]);
   const compare: CompareData = { rates, ppp, localAvg: localSalary?.avg ?? null };
+  const savedIds = await getFavoriteIds(user.id, jobs.map((j) => j.id));
+  const searchFilters = toSearchFilters(filters);
 
   // Builds a link that keeps the current filters, with some of them overridden
   const linkWith = (overrides: Partial<Record<keyof typeof filters, string | number | undefined>>) => {
@@ -164,6 +170,7 @@ export default async function JobsPage({
 
   return (
     <div className="@container/main flex flex-col gap-4 md:gap-6">
+      <div className="flex flex-wrap items-start justify-between gap-3">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Job offers</h1>
         <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -177,6 +184,11 @@ export default async function JobsPage({
             </Link>
           </Button>
         </div>
+      </div>
+        <SaveSearchButton
+          filters={searchFilters as Record<string, string>}
+          defaultName={describeSearch(searchFilters)}
+        />
       </div>
 
       <nav aria-label="Offer level" className="flex flex-wrap gap-2">
@@ -244,6 +256,9 @@ export default async function JobsPage({
         <Table>
           <TableHeader className="bg-muted/50">
             <TableRow>
+              <TableHead className="w-10 pr-0 pl-2">
+                <span className="sr-only">Save</span>
+              </TableHead>
               <TableHead className="px-4">Title</TableHead>
               <TableHead>Company</TableHead>
               <TableHead>Location</TableHead>
@@ -257,6 +272,9 @@ export default async function JobsPage({
           <TableBody>
             {jobs.map((j) => (
               <TableRow key={j.id} className="align-top">
+                <TableCell className="pr-0 pl-2">
+                  <SaveJobButton jobId={j.id} title={j.title} saved={savedIds.has(j.id)} />
+                </TableCell>
                 <TableCell className="max-w-72 px-4 whitespace-normal">
                   {j.url ? (
                     <a

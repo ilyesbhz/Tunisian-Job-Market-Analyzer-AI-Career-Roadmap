@@ -175,7 +175,7 @@ export default async function DashboardPage({
               <BracketCompareChart data={brackets} />
               <p className="text-muted-foreground mt-3 text-xs">
                 Estimates come from a model trained on the offers that state a bracket. It picks the right bracket
-                about 62% of the time and is at most one bracket off about 93% of the time. They are never used in
+                about 62% of the time and is at most one bracket off about 94% of the time. They are never used in
                 the average salary above.
               </p>
             </ChartCard>

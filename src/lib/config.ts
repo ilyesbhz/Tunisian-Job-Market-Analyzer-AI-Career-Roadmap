@@ -2,7 +2,7 @@
 export const LOCAL_COUNTRY = "Tunisia";
 
 // Model-estimated salaries (offers that state no salary) are shown only from this confidence on.
-// The model is right about 62% of the time overall and ~93% within one bracket.
+// The model is right about 62% of the time overall and ~94% within one bracket.
 export const ESTIMATE_MIN_CONFIDENCE = 0.5;
 
 // Tanitjobs-style monthly TND brackets used by the salary model, in display order

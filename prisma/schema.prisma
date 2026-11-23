@@ -23,6 +23,17 @@ model User {
   savedSearches SavedSearch[]
   favorites     Favorite[]
   roadmaps      Roadmap[]
+  // Career profile: shown on the profile page and used to pre-fill the roadmap form
+  careerStatus     CareerStatus?
+  targetRole       String?
+  preferredCountry String?
+  skills           String[]      @default([])
+}
+
+enum CareerStatus {
+  STUDENT
+  GRADUATE
+  EMPLOYEE
 }
 
 enum Role {
@@ -58,6 +69,7 @@ model JobOffer {
   level     JobLevel? // who the offer is for; null when nothing says so
   isActive  Boolean   @default(true) // false once the offer is no longer in the latest import
   lastImportedAt DateTime? // start time of the last import run that contained this offer
+  firstSeenAt DateTime @default(now()) // when the offer first appeared in an import (never updated)
   sourceId  Int
   source    Source     @relation(fields: [sourceId], references: [id])
   favorites Favorite[]
@@ -77,6 +89,7 @@ model JobOffer {
   @@index([sector])
   @@index([level])
   @@index([isActive, country])
+  @@index([firstSeenAt])
 }
 
 model Favorite {
@@ -90,12 +103,14 @@ model Favorite {
 }
 
 model SavedSearch {
-  id        Int      @id @default(autoincrement())
-  name      String
-  filters   Json
-  createdAt DateTime @default(now())
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            Int      @id @default(autoincrement())
+  name          String
+  filters       Json     // the jobs page filters (q, country, city, sector, skill, level)
+  createdAt     DateTime @default(now())
+  lastCheckedAt DateTime @default(now()) // offers imported after this count as "new"
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
 }
 
 enum SalaryPeriod {

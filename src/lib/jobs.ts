@@ -21,6 +21,16 @@ const filtersSchema = z.object({
 
 export type JobFilters = z.infer<typeof filtersSchema>;
 
+// The filters a saved search keeps (paging and the "show expired" toggle are not part of a search)
+export const SEARCH_FILTER_KEYS = ["q", "country", "city", "sector", "skill", "level"] as const;
+export type SearchFilters = Pick<JobFilters, (typeof SEARCH_FILTER_KEYS)[number]>;
+
+export function toSearchFilters(f: Partial<JobFilters>): SearchFilters {
+  const out: SearchFilters = {};
+  for (const k of SEARCH_FILTER_KEYS) if (f[k]) Object.assign(out, { [k]: f[k] });
+  return out;
+}
+
 export function parseFilters(raw: Record<string, string | string[] | undefined>): JobFilters {
   const flat = Object.fromEntries(
     Object.entries(raw).map(([k, v]) => [k, (Array.isArray(v) ? v[0] : v) || undefined])
@@ -39,8 +49,9 @@ export const openOffers = (): Prisma.JobOfferWhereInput => ({
   OR: [{ validThrough: null }, { validThrough: { gte: startOfTodayUtc() } }],
 });
 
-export async function getJobs(f: JobFilters) {
-  const where: Prisma.JobOfferWhereInput = {
+// One definition of "offers matching these filters", shared by the jobs page and saved searches
+export function buildJobsWhere(f: SearchFilters & { expired?: "1" }): Prisma.JobOfferWhereInput {
+  return {
     isActive: true,
     ...(!f.expired && { AND: [openOffers()] }),
     ...(f.q && {
@@ -55,6 +66,10 @@ export async function getJobs(f: JobFilters) {
     ...(f.skill && { skills: { has: f.skill } }),
     ...(f.level && { level: f.level }),
   };
+}
+
+export async function getJobs(f: JobFilters) {
+  const where = buildJobsWhere(f);
 
   const [total, jobs] = await Promise.all([
     prisma.jobOffer.count({ where }),

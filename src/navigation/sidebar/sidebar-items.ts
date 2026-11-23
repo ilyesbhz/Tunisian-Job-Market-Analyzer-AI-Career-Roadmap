@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, LayoutDashboard, type LucideIcon, Route } from "lucide-react";
+import { Bookmark, BriefcaseBusiness, CircleUser, LayoutDashboard, LineChart, type LucideIcon, Route } from "lucide-react";
 
 export type NavBadge = "new" | "updated" | "soon";
 
@@ -45,11 +45,16 @@ export const sidebarItems: NavGroup[] = [
     items: [
       { id: "overview", title: "Overview", url: "/dashboard", icon: LayoutDashboard },
       { id: "jobs", title: "Job offers", url: "/dashboard/jobs", icon: BriefcaseBusiness },
+      { id: "trends", title: "Trends", url: "/dashboard/trends", icon: LineChart, badge: "new" },
+      { id: "saved", title: "Saved", url: "/dashboard/saved", icon: Bookmark },
     ],
   },
   {
     id: 2,
     label: "Career",
-    items: [{ id: "roadmap", title: "AI career roadmap", url: "/dashboard/roadmap", icon: Route, badge: "new" }],
+    items: [
+      { id: "roadmap", title: "AI career roadmap", url: "/dashboard/roadmap", icon: Route, badge: "new" },
+      { id: "profile", title: "Profile", url: "/dashboard/profile", icon: CircleUser },
+    ],
   },
 ];

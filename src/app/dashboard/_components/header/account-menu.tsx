@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { BriefcaseBusiness, LayoutDashboard, LogOut } from "lucide-react";
+import { Bookmark, CircleUser, LayoutDashboard, LogOut } from "lucide-react";
 
 import { logout } from "@/app/(auth)/actions";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -44,9 +44,15 @@ export function AccountMenu({ user }: { readonly user: SessionUser }) {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/jobs">
-              <BriefcaseBusiness />
-              Job offers
+            <Link href="/dashboard/profile">
+              <CircleUser />
+              Profile
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/saved">
+              <Bookmark />
+              Saved
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>

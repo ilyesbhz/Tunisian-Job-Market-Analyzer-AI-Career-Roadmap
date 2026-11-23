@@ -7,10 +7,12 @@ import { cn } from "cn";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getCurrentUser } from "@/lib/dal";
+import { getNotifications } from "@/lib/saved";
 import { getPreference } from "@/server/server-actions";
 
 import { AccountMenu } from "./_components/header/account-menu";
 import { LayoutControls } from "./_components/header/layout-controls";
+import { NotificationsBell } from "./_components/header/notifications-bell";
 import { SearchDialog } from "./_components/header/search-dialog";
 import { ThemeSwitcher } from "./_components/header/theme-switcher";
 import { AppSidebar } from "./_components/sidebar/app-sidebar";
@@ -19,9 +21,10 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
   const user = await getCurrentUser();
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value !== "false";
-  const [variant, collapsible] = await Promise.all([
+  const [variant, collapsible, notifications] = await Promise.all([
     getPreference("sidebar_variant"),
     getPreference("sidebar_collapsible"),
+    getNotifications(user.id),
   ]);
 
   return (
@@ -62,6 +65,7 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
             <div className="flex items-center gap-2">
               <LayoutControls />
               <ThemeSwitcher />
+              <NotificationsBell notifications={notifications} />
               <AccountMenu user={user} />
             </div>
           </div>

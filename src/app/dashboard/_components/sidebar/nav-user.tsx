@@ -1,6 +1,8 @@
 "use client";
 
-import { EllipsisVertical, LogOut } from "lucide-react";
+import Link from "next/link";
+
+import { CircleUser, EllipsisVertical, LogOut } from "lucide-react";
 
 import { logout } from "@/app/(auth)/actions";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -62,6 +64,13 @@ export function NavUser({ user }: { readonly user: SessionUser }) {
                 <UserSummary user={user} />
               </div>
             </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/profile">
+                <CircleUser />
+                Profile
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => void logout()}>
               <LogOut />

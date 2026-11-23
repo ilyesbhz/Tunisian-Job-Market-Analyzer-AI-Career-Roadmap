@@ -14,8 +14,12 @@ const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short
 
 export default async function RoadmapPage() {
   const user = await getCurrentUser();
-  const [{ countries }, roadmaps] = await Promise.all([
+  const [{ countries }, profile, roadmaps] = await Promise.all([
     getFilterOptions(),
+    prisma.user.findUniqueOrThrow({
+      where: { id: user.id },
+      select: { careerStatus: true, targetRole: true, preferredCountry: true, skills: true },
+    }),
     prisma.roadmap.findMany({
       where: { userId: user.id },
       orderBy: { createdAt: "desc" },
@@ -38,10 +42,25 @@ export default async function RoadmapPage() {
         <Card className="shadow-xs">
           <CardHeader>
             <CardTitle>Your profile</CardTitle>
-            <CardDescription>The more precise the target role, the better the matching offers.</CardDescription>
+            <CardDescription>
+              The more precise the target role, the better the matching offers.{" "}
+              {profile.targetRole || profile.skills.length ? (
+                <>Pre-filled from your <Link href="/dashboard/profile" className="text-foreground underline underline-offset-4">profile</Link>.</>
+              ) : (
+                <>Tip: fill in your <Link href="/dashboard/profile" className="text-foreground underline underline-offset-4">profile</Link> to skip this next time.</>
+              )}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <RoadmapForm countries={countries} />
+            <RoadmapForm
+              countries={countries}
+              defaults={{
+                status: profile.careerStatus,
+                targetRole: profile.targetRole,
+                country: profile.preferredCountry && countries.includes(profile.preferredCountry) ? profile.preferredCountry : null,
+                skills: profile.skills,
+              }}
+            />
           </CardContent>
         </Card>
 

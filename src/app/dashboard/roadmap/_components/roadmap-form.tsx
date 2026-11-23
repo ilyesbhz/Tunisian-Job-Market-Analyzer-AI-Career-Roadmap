@@ -22,7 +22,14 @@ import { CAREER_STATUSES, type CareerStatus } from "@/lib/roadmap/schema";
 
 import { createRoadmap } from "../actions";
 
-export function RoadmapForm({ countries }: { countries: string[] }) {
+export type RoadmapDefaults = {
+  status: CareerStatus | null;
+  targetRole: string | null;
+  country: string | null;
+  skills: string[];
+};
+
+export function RoadmapForm({ countries, defaults }: { countries: string[]; defaults: RoadmapDefaults }) {
   const [state, action, pending] = useActionState(createRoadmap, undefined);
   const err = state?.errors;
 
@@ -38,7 +45,7 @@ export function RoadmapForm({ countries }: { countries: string[] }) {
                 className="hover:bg-muted/50 has-checked:border-primary has-checked:bg-primary/5 has-focus-visible:ring-ring/50 flex cursor-pointer flex-col gap-0.5 rounded-lg border p-3 has-focus-visible:ring-3"
               >
                 <span className="flex items-center gap-2 text-sm font-medium">
-                  <input type="radio" name="status" value={key} defaultChecked={i === 0} className="accent-primary" />
+                  <input type="radio" name="status" value={key} defaultChecked={defaults.status ? defaults.status === key : i === 0} className="accent-primary" />
                   {CAREER_STATUSES[key].label}
                 </span>
                 <span className="text-muted-foreground pl-5 text-xs">{CAREER_STATUSES[key].hint}</span>
@@ -54,6 +61,7 @@ export function RoadmapForm({ countries }: { countries: string[] }) {
             <Input
               id="targetRole"
               name="targetRole"
+              defaultValue={defaults.targetRole ?? ""}
               placeholder="e.g. Data analyst, Web developer, Accountant"
               aria-invalid={!!err?.targetRole}
               required
@@ -62,7 +70,7 @@ export function RoadmapForm({ countries }: { countries: string[] }) {
           </Field>
           <Field className="gap-1.5" data-invalid={!!err?.country}>
             <FieldLabel htmlFor="country">Country</FieldLabel>
-            <NativeSelect id="country" name="country" defaultValue={LOCAL_COUNTRY}>
+            <NativeSelect id="country" name="country" defaultValue={defaults.country ?? LOCAL_COUNTRY}>
               {countries.map((c) => (
                 <NativeSelectOption key={c} value={c}>
                   {c}
@@ -75,7 +83,13 @@ export function RoadmapForm({ countries }: { countries: string[] }) {
 
         <Field className="gap-1.5" data-invalid={!!err?.skills}>
           <FieldLabel htmlFor="skills">Your current skills</FieldLabel>
-          <Textarea id="skills" name="skills" rows={2} placeholder="e.g. Python, SQL, Excel, English" />
+          <Textarea
+            id="skills"
+            name="skills"
+            rows={2}
+            defaultValue={defaults.skills.join(", ")}
+            placeholder="e.g. Python, SQL, Excel, English"
+          />
           <FieldDescription>Separate them with commas. They are compared with what offers ask for.</FieldDescription>
           <FieldError>{err?.skills?.[0]}</FieldError>
         </Field>
