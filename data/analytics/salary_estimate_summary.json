@@ -2,10 +2,10 @@
  {
   "sector": "All sectors",
   "bracket": "<1000",
-  "stated_jobs": 702,
+  "stated_jobs": 708,
   "estimated_jobs": 2340,
   "avg_estimate_confidence": 0.752,
-  "pct_stated": 48.1,
+  "pct_stated": 48.2,
   "pct_estimated": 41.1,
   "pct_combined": 42.6,
   "bracket_order": 1
@@ -13,10 +13,10 @@
  {
   "sector": "All sectors",
   "bracket": "1000-1500",
-  "stated_jobs": 456,
+  "stated_jobs": 461,
   "estimated_jobs": 1580,
   "avg_estimate_confidence": 0.603,
-  "pct_stated": 31.3,
+  "pct_stated": 31.4,
   "pct_estimated": 27.8,
   "pct_combined": 28.5,
   "bracket_order": 2
@@ -27,15 +27,15 @@
   "stated_jobs": 163,
   "estimated_jobs": 699,
   "avg_estimate_confidence": 0.556,
-  "pct_stated": 11.2,
+  "pct_stated": 11.1,
   "pct_estimated": 12.3,
-  "pct_combined": 12.1,
+  "pct_combined": 12,
   "bracket_order": 3
  },
  {
   "sector": "All sectors",
   "bracket": ">=2000",
-  "stated_jobs": 137,
+  "stated_jobs": 138,
   "estimated_jobs": 1072,
   "avg_estimate_confidence": 0.701,
   "pct_stated": 9.4,
@@ -93,20 +93,20 @@
   "stated_jobs": 24,
   "estimated_jobs": 122,
   "avg_estimate_confidence": 0.746,
-  "pct_stated": 54.5,
+  "pct_stated": 52.2,
   "pct_estimated": 45.4,
-  "pct_combined": 46.6,
+  "pct_combined": 46.3,
   "bracket_order": 1
  },
  {
   "sector": "Agriculture & Agri-food",
   "bracket": "1000-1500",
-  "stated_jobs": 13,
+  "stated_jobs": 15,
   "estimated_jobs": 46,
   "avg_estimate_confidence": 0.565,
-  "pct_stated": 29.5,
+  "pct_stated": 32.6,
   "pct_estimated": 17.1,
-  "pct_combined": 18.8,
+  "pct_combined": 19.4,
   "bracket_order": 2
  },
  {
@@ -115,9 +115,9 @@
   "stated_jobs": 4,
   "estimated_jobs": 37,
   "avg_estimate_confidence": 0.607,
-  "pct_stated": 9.1,
+  "pct_stated": 8.7,
   "pct_estimated": 13.8,
-  "pct_combined": 13.1,
+  "pct_combined": 13,
   "bracket_order": 3
  },
  {
@@ -126,9 +126,9 @@
   "stated_jobs": 3,
   "estimated_jobs": 64,
   "avg_estimate_confidence": 0.761,
-  "pct_stated": 6.8,
+  "pct_stated": 6.5,
   "pct_estimated": 23.8,
-  "pct_combined": 21.4,
+  "pct_combined": 21.3,
   "bracket_order": 4
  },
  {
@@ -310,12 +310,12 @@
  {
   "sector": "Education & Training",
   "bracket": "<1000",
-  "stated_jobs": 11,
+  "stated_jobs": 12,
   "estimated_jobs": 78,
   "avg_estimate_confidence": 0.729,
-  "pct_stated": 47.8,
+  "pct_stated": 50,
   "pct_estimated": 45.3,
-  "pct_combined": 45.6,
+  "pct_combined": 45.9,
   "bracket_order": 1
  },
  {
@@ -324,9 +324,9 @@
   "stated_jobs": 6,
   "estimated_jobs": 61,
   "avg_estimate_confidence": 0.598,
-  "pct_stated": 26.1,
+  "pct_stated": 25,
   "pct_estimated": 35.5,
-  "pct_combined": 34.4,
+  "pct_combined": 34.2,
   "bracket_order": 2
  },
  {
@@ -335,9 +335,9 @@
   "stated_jobs": 4,
   "estimated_jobs": 20,
   "avg_estimate_confidence": 0.521,
-  "pct_stated": 17.4,
+  "pct_stated": 16.7,
   "pct_estimated": 11.6,
-  "pct_combined": 12.3,
+  "pct_combined": 12.2,
   "bracket_order": 3
  },
  {
@@ -346,7 +346,7 @@
   "stated_jobs": 2,
   "estimated_jobs": 13,
   "avg_estimate_confidence": 0.633,
-  "pct_stated": 8.7,
+  "pct_stated": 8.3,
   "pct_estimated": 7.6,
   "pct_combined": 7.7,
   "bracket_order": 4
@@ -387,12 +387,12 @@
  {
   "sector": "Engineering",
   "bracket": "<1000",
-  "stated_jobs": 23,
+  "stated_jobs": 24,
   "estimated_jobs": 121,
   "avg_estimate_confidence": 0.722,
-  "pct_stated": 39.7,
+  "pct_stated": 40.7,
   "pct_estimated": 33.5,
-  "pct_combined": 34.4,
+  "pct_combined": 34.5,
   "bracket_order": 1
  },
  {
@@ -401,9 +401,9 @@
   "stated_jobs": 22,
   "estimated_jobs": 140,
   "avg_estimate_confidence": 0.659,
-  "pct_stated": 37.9,
+  "pct_stated": 37.3,
   "pct_estimated": 38.8,
-  "pct_combined": 38.7,
+  "pct_combined": 38.6,
   "bracket_order": 2
  },
  {
@@ -412,7 +412,7 @@
   "stated_jobs": 4,
   "estimated_jobs": 38,
   "avg_estimate_confidence": 0.544,
-  "pct_stated": 6.9,
+  "pct_stated": 6.8,
   "pct_estimated": 10.5,
   "pct_combined": 10,
   "bracket_order": 3
@@ -423,7 +423,7 @@
   "stated_jobs": 9,
   "estimated_jobs": 62,
   "avg_estimate_confidence": 0.726,
-  "pct_stated": 15.5,
+  "pct_stated": 15.3,
   "pct_estimated": 17.2,
   "pct_combined": 16.9,
   "bracket_order": 4
@@ -434,7 +434,7 @@
   "stated_jobs": 48,
   "estimated_jobs": 166,
   "avg_estimate_confidence": 0.748,
-  "pct_stated": 44.9,
+  "pct_stated": 44.4,
   "pct_estimated": 39.8,
   "pct_combined": 40.8,
   "bracket_order": 1
@@ -442,12 +442,12 @@
  {
   "sector": "Finance & Accounting",
   "bracket": "1000-1500",
-  "stated_jobs": 44,
+  "stated_jobs": 45,
   "estimated_jobs": 137,
   "avg_estimate_confidence": 0.612,
-  "pct_stated": 41.1,
+  "pct_stated": 41.7,
   "pct_estimated": 32.9,
-  "pct_combined": 34.5,
+  "pct_combined": 34.7,
   "bracket_order": 2
  },
  {
@@ -467,9 +467,9 @@
   "stated_jobs": 8,
   "estimated_jobs": 82,
   "avg_estimate_confidence": 0.722,
-  "pct_stated": 7.5,
+  "pct_stated": 7.4,
   "pct_estimated": 19.7,
-  "pct_combined": 17.2,
+  "pct_combined": 17.1,
   "bracket_order": 4
  },
  {
@@ -522,20 +522,20 @@
   "stated_jobs": 33,
   "estimated_jobs": 83,
   "avg_estimate_confidence": 0.752,
-  "pct_stated": 42.9,
+  "pct_stated": 42.3,
   "pct_estimated": 46.1,
-  "pct_combined": 45.1,
+  "pct_combined": 45,
   "bracket_order": 1
  },
  {
   "sector": "Hospitality, Tourism & Personal Services",
   "bracket": "1000-1500",
-  "stated_jobs": 33,
+  "stated_jobs": 34,
   "estimated_jobs": 63,
   "avg_estimate_confidence": 0.653,
-  "pct_stated": 42.9,
+  "pct_stated": 43.6,
   "pct_estimated": 35,
-  "pct_combined": 37.4,
+  "pct_combined": 37.6,
   "bracket_order": 2
  },
  {
@@ -544,9 +544,9 @@
   "stated_jobs": 7,
   "estimated_jobs": 14,
   "avg_estimate_confidence": 0.528,
-  "pct_stated": 9.1,
+  "pct_stated": 9,
   "pct_estimated": 7.8,
-  "pct_combined": 8.2,
+  "pct_combined": 8.1,
   "bracket_order": 3
  },
  {
@@ -555,7 +555,7 @@
   "stated_jobs": 4,
   "estimated_jobs": 20,
   "avg_estimate_confidence": 0.643,
-  "pct_stated": 5.2,
+  "pct_stated": 5.1,
   "pct_estimated": 11.1,
   "pct_combined": 9.3,
   "bracket_order": 4
@@ -610,7 +610,7 @@
   "stated_jobs": 67,
   "estimated_jobs": 308,
   "avg_estimate_confidence": 0.704,
-  "pct_stated": 42.1,
+  "pct_stated": 41.9,
   "pct_estimated": 31.7,
   "pct_combined": 33.2,
   "bracket_order": 1
@@ -621,7 +621,7 @@
   "stated_jobs": 62,
   "estimated_jobs": 326,
   "avg_estimate_confidence": 0.584,
-  "pct_stated": 39,
+  "pct_stated": 38.8,
   "pct_estimated": 33.6,
   "pct_combined": 34.3,
   "bracket_order": 2
@@ -632,7 +632,7 @@
   "stated_jobs": 13,
   "estimated_jobs": 118,
   "avg_estimate_confidence": 0.54,
-  "pct_stated": 8.2,
+  "pct_stated": 8.1,
   "pct_estimated": 12.2,
   "pct_combined": 11.6,
   "bracket_order": 3
@@ -640,23 +640,23 @@
  {
   "sector": "Industry & Manufacturing",
   "bracket": ">=2000",
-  "stated_jobs": 17,
+  "stated_jobs": 18,
   "estimated_jobs": 219,
   "avg_estimate_confidence": 0.694,
-  "pct_stated": 10.7,
+  "pct_stated": 11.3,
   "pct_estimated": 22.6,
-  "pct_combined": 20.9,
+  "pct_combined": 21,
   "bracket_order": 4
  },
  {
   "sector": "IT, Data & Telecom",
   "bracket": "<1000",
-  "stated_jobs": 20,
+  "stated_jobs": 22,
   "estimated_jobs": 73,
   "avg_estimate_confidence": 0.675,
-  "pct_stated": 35.7,
+  "pct_stated": 37.9,
   "pct_estimated": 21.8,
-  "pct_combined": 23.8,
+  "pct_combined": 24.2,
   "bracket_order": 1
  },
  {
@@ -665,9 +665,9 @@
   "stated_jobs": 16,
   "estimated_jobs": 60,
   "avg_estimate_confidence": 0.555,
-  "pct_stated": 28.6,
+  "pct_stated": 27.6,
   "pct_estimated": 17.9,
-  "pct_combined": 19.4,
+  "pct_combined": 19.3,
   "bracket_order": 2
  },
  {
@@ -676,9 +676,9 @@
   "stated_jobs": 12,
   "estimated_jobs": 59,
   "avg_estimate_confidence": 0.579,
-  "pct_stated": 21.4,
+  "pct_stated": 20.7,
   "pct_estimated": 17.6,
-  "pct_combined": 18.2,
+  "pct_combined": 18.1,
   "bracket_order": 3
  },
  {
@@ -687,9 +687,9 @@
   "stated_jobs": 8,
   "estimated_jobs": 143,
   "avg_estimate_confidence": 0.739,
-  "pct_stated": 14.3,
+  "pct_stated": 13.8,
   "pct_estimated": 42.7,
-  "pct_combined": 38.6,
+  "pct_combined": 38.4,
   "bracket_order": 4
  },
  {
@@ -728,12 +728,12 @@
  {
   "sector": "Logistics, Transport & Supply Chain",
   "bracket": "<1000",
-  "stated_jobs": 31,
+  "stated_jobs": 32,
   "estimated_jobs": 137,
   "avg_estimate_confidence": 0.774,
-  "pct_stated": 50,
+  "pct_stated": 50.8,
   "pct_estimated": 39.6,
-  "pct_combined": 41.2,
+  "pct_combined": 41.3,
   "bracket_order": 1
  },
  {
@@ -742,9 +742,9 @@
   "stated_jobs": 25,
   "estimated_jobs": 127,
   "avg_estimate_confidence": 0.648,
-  "pct_stated": 40.3,
+  "pct_stated": 39.7,
   "pct_estimated": 36.7,
-  "pct_combined": 37.3,
+  "pct_combined": 37.2,
   "bracket_order": 2
  },
  {
@@ -753,9 +753,9 @@
   "stated_jobs": 4,
   "estimated_jobs": 42,
   "avg_estimate_confidence": 0.552,
-  "pct_stated": 6.5,
+  "pct_stated": 6.3,
   "pct_estimated": 12.1,
-  "pct_combined": 11.3,
+  "pct_combined": 11.2,
   "bracket_order": 3
  },
  {
@@ -893,10 +893,10 @@
  {
   "sector": "Sales & Retail",
   "bracket": "<1000",
-  "stated_jobs": 165,
+  "stated_jobs": 166,
   "estimated_jobs": 402,
   "avg_estimate_confidence": 0.776,
-  "pct_stated": 63.2,
+  "pct_stated": 63.1,
   "pct_estimated": 53.7,
   "pct_combined": 56.1,
   "bracket_order": 1
@@ -904,12 +904,12 @@
  {
   "sector": "Sales & Retail",
   "bracket": "1000-1500",
-  "stated_jobs": 53,
+  "stated_jobs": 54,
   "estimated_jobs": 105,
   "avg_estimate_confidence": 0.519,
-  "pct_stated": 20.3,
+  "pct_stated": 20.5,
   "pct_estimated": 14,
-  "pct_combined": 15.6,
+  "pct_combined": 15.7,
   "bracket_order": 2
  },
  {
@@ -918,7 +918,7 @@
   "stated_jobs": 24,
   "estimated_jobs": 99,
   "avg_estimate_confidence": 0.546,
-  "pct_stated": 9.2,
+  "pct_stated": 9.1,
   "pct_estimated": 13.2,
   "pct_combined": 12.2,
   "bracket_order": 3
@@ -929,7 +929,7 @@
   "stated_jobs": 19,
   "estimated_jobs": 143,
   "avg_estimate_confidence": 0.663,
-  "pct_stated": 7.3,
+  "pct_stated": 7.2,
   "pct_estimated": 19.1,
   "pct_combined": 16,
   "bracket_order": 4

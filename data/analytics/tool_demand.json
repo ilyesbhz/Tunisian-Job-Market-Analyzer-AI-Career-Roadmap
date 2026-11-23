@@ -4,7 +4,7 @@
   "sector": "Administration & Management",
   "tool": "Excel",
   "jobs": 79,
-  "pct_of_sector_jobs": 10.3
+  "pct_of_sector_jobs": 10.2
  },
  {
   "country": "tn",
@@ -18,7 +18,7 @@
   "sector": "Administration & Management",
   "tool": "Tableau",
   "jobs": 15,
-  "pct_of_sector_jobs": 2
+  "pct_of_sector_jobs": 1.9
  },
  {
   "country": "tn",
@@ -53,21 +53,21 @@
   "sector": "Administration & Management",
   "tool": "Canva",
   "jobs": 5,
-  "pct_of_sector_jobs": 0.7
+  "pct_of_sector_jobs": 0.6
  },
  {
   "country": "tn",
   "sector": "Administration & Management",
   "tool": "Google Sheets",
   "jobs": 5,
-  "pct_of_sector_jobs": 0.7
+  "pct_of_sector_jobs": 0.6
  },
  {
   "country": "tn",
   "sector": "Administration & Management",
   "tool": "Odoo",
   "jobs": 5,
-  "pct_of_sector_jobs": 0.7
+  "pct_of_sector_jobs": 0.6
  },
  {
   "country": "tn",
@@ -101,15 +101,15 @@
   "country": "tn",
   "sector": "Construction & Property",
   "tool": "AutoCAD",
-  "jobs": 36,
-  "pct_of_sector_jobs": 9.3
+  "jobs": 37,
+  "pct_of_sector_jobs": 9.6
  },
  {
   "country": "tn",
   "sector": "Construction & Property",
   "tool": "Revit",
-  "jobs": 26,
-  "pct_of_sector_jobs": 6.7
+  "jobs": 27,
+  "pct_of_sector_jobs": 7
  },
  {
   "country": "tn",
@@ -318,8 +318,8 @@
   "country": "tn",
   "sector": "Education & Training",
   "tool": "Canva",
-  "jobs": 3,
-  "pct_of_sector_jobs": 1.6
+  "jobs": 4,
+  "pct_of_sector_jobs": 2.1
  },
  {
   "country": "tn",
@@ -605,8 +605,8 @@
   "country": "tn",
   "sector": "Industry & Manufacturing",
   "tool": "Excel",
-  "jobs": 23,
-  "pct_of_sector_jobs": 2.1
+  "jobs": 24,
+  "pct_of_sector_jobs": 2.2
  },
  {
   "country": "tn",
@@ -655,7 +655,7 @@
   "sector": "Industry & Manufacturing",
   "tool": "SAP",
   "jobs": 5,
-  "pct_of_sector_jobs": 0.5
+  "pct_of_sector_jobs": 0.4
  },
  {
   "country": "tn",
@@ -718,7 +718,7 @@
   "sector": "IT, Data & Telecom",
   "tool": "SQL",
   "jobs": 31,
-  "pct_of_sector_jobs": 8
+  "pct_of_sector_jobs": 7.9
  },
  {
   "country": "tn",
@@ -767,7 +767,7 @@
   "sector": "IT, Data & Telecom",
   "tool": "JavaScript",
   "jobs": 15,
-  "pct_of_sector_jobs": 3.9
+  "pct_of_sector_jobs": 3.8
  },
  {
   "country": "tn",
@@ -1355,14 +1355,14 @@
   "sector": "Marketing & Communication",
   "tool": "Meta Ads",
   "jobs": 28,
-  "pct_of_sector_jobs": 14.1
+  "pct_of_sector_jobs": 13.9
  },
  {
   "country": "tn",
   "sector": "Marketing & Communication",
   "tool": "Canva",
   "jobs": 22,
-  "pct_of_sector_jobs": 11.1
+  "pct_of_sector_jobs": 10.9
  },
  {
   "country": "tn",
@@ -1452,8 +1452,8 @@
   "country": "tn",
   "sector": "Sales & Retail",
   "tool": "Excel",
-  "jobs": 32,
-  "pct_of_sector_jobs": 3.2
+  "jobs": 33,
+  "pct_of_sector_jobs": 3.3
  },
  {
   "country": "tn",

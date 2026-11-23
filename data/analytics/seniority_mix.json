@@ -3,15 +3,15 @@
   "country": "tn",
   "sector": "Administration & Management",
   "seniority": "unspecified",
-  "jobs": 693,
-  "pct": 90.2
+  "jobs": 697,
+  "pct": 90.3
  },
  {
   "country": "tn",
   "sector": "Administration & Management",
   "seniority": "junior",
   "jobs": 45,
-  "pct": 5.9
+  "pct": 5.8
  },
  {
   "country": "tn",
@@ -38,8 +38,8 @@
   "country": "tn",
   "sector": "Agriculture & Agri-food",
   "seniority": "unspecified",
-  "jobs": 261,
-  "pct": 85.6
+  "jobs": 263,
+  "pct": 85.7
  },
  {
   "country": "tn",
@@ -53,28 +53,28 @@
   "sector": "Agriculture & Agri-food",
   "seniority": "senior",
   "jobs": 13,
-  "pct": 4.3
+  "pct": 4.2
  },
  {
   "country": "tn",
   "sector": "Agriculture & Agri-food",
   "seniority": "mid",
   "jobs": 9,
-  "pct": 3
+  "pct": 2.9
  },
  {
   "country": "tn",
   "sector": "Construction & Property",
   "seniority": "unspecified",
   "jobs": 329,
-  "pct": 85.2
+  "pct": 85
  },
  {
   "country": "tn",
   "sector": "Construction & Property",
   "seniority": "junior",
-  "jobs": 31,
-  "pct": 8
+  "jobs": 32,
+  "pct": 8.3
  },
  {
   "country": "tn",
@@ -207,7 +207,7 @@
   "sector": "Education & Training",
   "seniority": "unspecified",
   "jobs": 178,
-  "pct": 93.7
+  "pct": 93.2
  },
  {
   "country": "tn",
@@ -234,8 +234,8 @@
   "country": "tn",
   "sector": "Education & Training",
   "seniority": "mid",
-  "jobs": 1,
-  "pct": 0.5
+  "jobs": 2,
+  "pct": 1
  },
  {
   "country": "tn",
@@ -255,7 +255,7 @@
   "country": "tn",
   "sector": "Engineering",
   "seniority": "unspecified",
-  "jobs": 318,
+  "jobs": 319,
   "pct": 77.4
  },
  {
@@ -290,7 +290,7 @@
   "country": "tn",
   "sector": "Finance & Accounting",
   "seniority": "unspecified",
-  "jobs": 358,
+  "jobs": 359,
   "pct": 69.6
  },
  {
@@ -298,21 +298,21 @@
   "sector": "Finance & Accounting",
   "seniority": "junior",
   "jobs": 77,
-  "pct": 15
+  "pct": 14.9
  },
  {
   "country": "tn",
   "sector": "Finance & Accounting",
   "seniority": "mid",
   "jobs": 44,
-  "pct": 8.6
+  "pct": 8.5
  },
  {
   "country": "tn",
   "sector": "Finance & Accounting",
   "seniority": "senior",
-  "jobs": 33,
-  "pct": 6.4
+  "jobs": 34,
+  "pct": 6.6
  },
  {
   "country": "tn",
@@ -416,7 +416,7 @@
   "country": "tn",
   "sector": "Industry & Manufacturing",
   "seniority": "unspecified",
-  "jobs": 988,
+  "jobs": 990,
   "pct": 88.9
  },
  {
@@ -437,8 +437,8 @@
   "country": "tn",
   "sector": "Industry & Manufacturing",
   "seniority": "mid",
-  "jobs": 28,
-  "pct": 2.5
+  "jobs": 29,
+  "pct": 2.6
  },
  {
   "country": "tn",
@@ -451,8 +451,8 @@
   "country": "tn",
   "sector": "IT, Data & Telecom",
   "seniority": "unspecified",
-  "jobs": 257,
-  "pct": 66.1
+  "jobs": 258,
+  "pct": 66.2
  },
  {
   "country": "tn",
@@ -466,7 +466,7 @@
   "sector": "IT, Data & Telecom",
   "seniority": "junior",
   "jobs": 38,
-  "pct": 9.8
+  "pct": 9.7
  },
  {
   "country": "tn",
@@ -570,8 +570,8 @@
   "country": "tn",
   "sector": "Marketing & Communication",
   "seniority": "unspecified",
-  "jobs": 156,
-  "pct": 78.4
+  "jobs": 158,
+  "pct": 78.6
  },
  {
   "country": "tn",
@@ -619,8 +619,8 @@
   "country": "tn",
   "sector": "Sales & Retail",
   "seniority": "unspecified",
-  "jobs": 857,
-  "pct": 86.1
+  "jobs": 859,
+  "pct": 86.2
  },
  {
   "country": "tn",
@@ -654,7 +654,7 @@
   "country": "tn",
   "sector": "Science, Research & Quality",
   "seniority": "unspecified",
-  "jobs": 126,
+  "jobs": 127,
   "pct": 89.4
  },
  {
@@ -662,7 +662,7 @@
   "sector": "Science, Research & Quality",
   "seniority": "junior",
   "jobs": 9,
-  "pct": 6.4
+  "pct": 6.3
  },
  {
   "country": "tn",

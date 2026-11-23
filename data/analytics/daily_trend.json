@@ -297,7 +297,7 @@
   "source": "tanitjobs",
   "country": "tn",
   "day": "2026-10-26",
-  "new_jobs": 111
+  "new_jobs": 110
  },
  {
   "source": "tanitjobs",
@@ -435,7 +435,7 @@
   "source": "tanitjobs",
   "country": "tn",
   "day": "2026-11-18",
-  "new_jobs": 119
+  "new_jobs": 118
  },
  {
   "source": "tanitjobs",
@@ -448,5 +448,11 @@
   "country": "tn",
   "day": "2026-11-20",
   "new_jobs": 100
+ },
+ {
+  "source": "tanitjobs",
+  "country": "tn",
+  "day": "2026-11-21",
+  "new_jobs": 42
  }
 ]
